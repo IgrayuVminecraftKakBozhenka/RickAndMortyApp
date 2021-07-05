@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">RickAndMortyAPI</string>
     <string name="shwifty">Швифтануться</string>
+    <string name="name">Имя:</string>
+    <string name="state">Состояние:</string>
+    <string name="race">Раса:</string>
+    <string name="first_seen">Впервые замечен:</string>
 </resources>
