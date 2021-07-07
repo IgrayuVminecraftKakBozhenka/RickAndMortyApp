@@ -8,7 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.CustomRecyclerAdapter.CustomRecyclerAdapter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestToAPI
 import com.squareup.picasso.Picasso
 
@@ -17,6 +21,7 @@ class PersonFragment : Fragment() {
     private lateinit var viewModel: PersonViewModel
     private lateinit var image: ImageView
     private lateinit var description: TextView
+    private val characters: MutableList<Character> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,16 +40,25 @@ class PersonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViews()
+        //initViews()
 
         RequestToAPI.character.observe(viewLifecycleOwner, { character ->
-            description.text = viewModel.getCorrectData(character)
-            Picasso.get().load(viewModel.getImage(character)).into(image)
+            characters.add(character)
         })
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = CustomRecyclerAdapter(characters)
+
     }
 
-    private fun initViews() {
-        image = requireView().findViewById(R.id.person_image)
-        description = requireView().findViewById(R.id.description)
-    }
+    //private fun initViews() {
+    //    image = requireView().findViewById(R.id.person_image)
+    //    description = requireView().findViewById(R.id.description)
+    //}
 }
+
+//RequestToAPI.character.observe(viewLifecycleOwner, { character ->
+//    description.text = viewModel.getCorrectData(character)
+//    Picasso.get().load(viewModel.getImage(character)).into(image)
+//})
