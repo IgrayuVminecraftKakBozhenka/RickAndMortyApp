@@ -1,6 +1,5 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.PersonFragment
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.PersonFragment
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
