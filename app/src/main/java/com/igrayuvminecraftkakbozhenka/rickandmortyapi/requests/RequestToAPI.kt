@@ -1,6 +1,6 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests
 
-import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -9,46 +9,35 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 object RequestToAPI {
 
 
     private var service: RickAndMortyService? = null
+    val character: MutableLiveData<Character> = MutableLiveData()
 
     fun getCharacter() {
-        var character: Character? = null
-
 
         val call = service?.listRepos()
 
-        GlobalScope.launch {
-
-            val character = withContext(Dispatchers.IO) {
-
-            }
-
-        }
-
         call?.enqueue(object : Callback<InfoData?> {
             override fun onResponse(call: Call<InfoData?>, response: Response<InfoData?>) {
-                val name = response.body()?.results?.get(0)?.name
-                val status = response.body()?.results?.get(0)?.status
-                val species = response.body()?.results?.get(0)?.species
-                val gender = response.body()?.results?.get(0)?.gender
-                val image = response.body()?.results?.get(0)?.image
-                character = Character(name!!, status!!, species!!, gender!!, image!!)
-                Log.d("Rick", character!!.name)
+                val size = response.body()!!.results.size
+                val index = (0..size).random() - 1
+                val name = response.body()!!.results[index].name
+                val status = response.body()!!.results[index].status
+                val species = response.body()!!.results[index].species
+                val gender = response.body()!!.results[index].gender
+                val image = response.body()!!.results[index].image
+
+                val characterFromAPI = Character(name, status, species, gender, image)
+                character.value = characterFromAPI
             }
 
             override fun onFailure(call: Call<InfoData?>, t: Throwable) {
 
             }
-
         })
     }
 
@@ -67,6 +56,7 @@ object RequestToAPI {
         service = retrofit.create(RickAndMortyService::class.java)
     }
 }
+
 
 //call.enqueue(object : Callback<Result> {
 //

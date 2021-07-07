@@ -19,10 +19,12 @@
         tools:srcCompat="@drawable/rick" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/description"
+        android:layout_width="372dp"
+        android:layout_height="359dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        tools:text="@string/name"
         android:textColor="@color/white"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,24 +32,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/person_image"
-        app:layout_constraintVertical_bias="0.293"
-        android:text="@string/name" />
+        app:layout_constraintVertical_bias="0.293" />
 
-    <TextView
-        android:id="@+id/person_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/white"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_image"
-        app:layout_constraintVertical_bias="0.293"
-        tools:text="Rick Sanchez" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
