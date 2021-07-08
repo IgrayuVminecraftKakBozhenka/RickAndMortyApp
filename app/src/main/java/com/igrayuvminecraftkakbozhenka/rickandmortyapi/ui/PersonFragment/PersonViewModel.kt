@@ -2,6 +2,7 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.PersonFragment
 
 import androidx.lifecycle.ViewModel
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestToAPI
 
 
 class PersonViewModel: ViewModel() {
@@ -12,5 +13,9 @@ class PersonViewModel: ViewModel() {
                 "Species: " + character.species + "\n"
 
     fun getImage(character: Character) = character.image
+
+    fun getNewCharacter() {
+        RequestToAPI.getCharacter()
+    }
 
 }
