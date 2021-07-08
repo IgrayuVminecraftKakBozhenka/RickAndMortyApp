@@ -24,7 +24,7 @@ object RequestToAPI {
         call?.enqueue(object : Callback<InfoData?> {
             override fun onResponse(call: Call<InfoData?>, response: Response<InfoData?>) {
                 val size = response.body()!!.results.size
-                val index = (0..size).random() - 1
+                val index = (1..size).random() - 1
                 val name = response.body()!!.results[index].name
                 val status = response.body()!!.results[index].status
                 val species = response.body()!!.results[index].species
