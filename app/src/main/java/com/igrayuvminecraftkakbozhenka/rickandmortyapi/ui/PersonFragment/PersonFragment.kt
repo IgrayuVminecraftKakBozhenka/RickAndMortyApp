@@ -18,6 +18,7 @@ import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestToAPI
 import com.squareup.picasso.Picasso
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
 class PersonFragment : Fragment() {
 
@@ -47,5 +48,8 @@ class PersonFragment : Fragment() {
 
         val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
         viewPager.adapter = CustomRecyclerAdapter(CharacterRepository.CharacterList)
+
+        val dotsIndicator = view.findViewById<DotsIndicator>(R.id.dots_indicator)
+        dotsIndicator.setViewPager2(viewPager)
     }
 }
