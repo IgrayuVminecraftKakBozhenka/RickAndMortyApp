@@ -11,6 +11,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun goToPerson() {
         (app as App).router.navigateTo(Screens.Person())
-        RequestToAPI.getCharacter()
     }
 }

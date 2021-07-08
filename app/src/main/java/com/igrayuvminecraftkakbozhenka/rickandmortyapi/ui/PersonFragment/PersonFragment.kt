@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.CustomRecyclerAdapter.CustomRecyclerAdapter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
@@ -41,9 +42,9 @@ class PersonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
+        val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
         val linearLayoutManager =  LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = CustomRecyclerAdapter(CharacterRepository.CharacterList)
+        //recyclerView.layoutManager = linearLayoutManager
+        viewPager.adapter = CustomRecyclerAdapter(CharacterRepository.CharacterList)
     }
 }
