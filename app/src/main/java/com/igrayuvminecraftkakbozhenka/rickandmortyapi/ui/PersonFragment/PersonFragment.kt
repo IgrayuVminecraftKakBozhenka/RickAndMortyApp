@@ -5,20 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.CustomRecyclerAdapter.CustomRecyclerAdapter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestToAPI
-import com.squareup.picasso.Picasso
-import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
 class PersonFragment : Fragment() {
@@ -52,7 +44,12 @@ class PersonFragment : Fragment() {
         getNewCharacterButton.setOnClickListener {
             viewModel.getNewCharacter()
             (viewPager.adapter as CustomRecyclerAdapter).notifyDataSetChanged()
-        }
 
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        CharacterRepository.CharacterList.clear()
     }
 }

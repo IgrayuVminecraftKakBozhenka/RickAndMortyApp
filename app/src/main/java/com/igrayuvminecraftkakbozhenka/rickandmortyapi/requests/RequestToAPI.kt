@@ -1,6 +1,5 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests
 
-import androidx.lifecycle.MutableLiveData
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
 import okhttp3.OkHttpClient
