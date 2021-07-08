@@ -42,15 +42,17 @@ class PersonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val getNewCharacterButton = view.findViewById<Button>(R.id.get_character_button)
-        getNewCharacterButton.setOnClickListener {
-            viewModel.getNewCharacter()
-        }
-
         val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
         viewPager.adapter = CustomRecyclerAdapter(CharacterRepository.CharacterList)
 
         val dotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.dots_indicator)
         dotsIndicator.setViewPager2(viewPager)
+
+        val getNewCharacterButton = view.findViewById<Button>(R.id.get_character_button)
+        getNewCharacterButton.setOnClickListener {
+            viewModel.getNewCharacter()
+            (viewPager.adapter as CustomRecyclerAdapter).notifyDataSetChanged()
+        }
+
     }
 }
