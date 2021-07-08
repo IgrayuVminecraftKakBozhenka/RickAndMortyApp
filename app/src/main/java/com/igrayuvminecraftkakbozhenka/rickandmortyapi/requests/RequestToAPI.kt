@@ -2,6 +2,7 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests
 
 import androidx.lifecycle.MutableLiveData
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -15,7 +16,6 @@ object RequestToAPI {
 
 
     private var service: RickAndMortyService? = null
-    val character: MutableLiveData<Character> = MutableLiveData()
 
     fun getCharacter() {
 
@@ -32,7 +32,7 @@ object RequestToAPI {
                 val image = response.body()!!.results[index].image
 
                 val characterFromAPI = Character(name, status, species, gender, image)
-                character.value = characterFromAPI
+                CharacterRepository.CharacterList.add(characterFromAPI)
             }
 
             override fun onFailure(call: Call<InfoData?>, t: Throwable) {

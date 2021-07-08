@@ -13,13 +13,9 @@ import com.squareup.picasso.Picasso
 class CustomRecyclerAdapter(private val characters: List<Character>): RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        lateinit var image: ImageView
-        lateinit var description: TextView
+        var image: ImageView = itemView.findViewById(R.id.person_image)
+        var description: TextView = itemView.findViewById(R.id.description)
 
-        init {
-            image = itemView.findViewById(R.id.person_image)
-            description = itemView.findViewById(R.id.description)
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -29,7 +25,11 @@ class CustomRecyclerAdapter(private val characters: List<Character>): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.description.text = characters[position].name
+        val characterDescription = "Name: " + characters[position].name + "\n" +
+                "Gender: " + characters[position].gender + "\n" +
+                "Species: " + characters[position].species + "\n" +
+                "Status: " + characters[position].status + "\n"
+        holder.description.text = characterDescription
         Picasso.get().load(characters[position].image).into(holder.image)
     }
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.CustomRecyclerAdapter.CustomRecyclerAdapter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestToAPI
 import com.squareup.picasso.Picasso
 
@@ -40,25 +41,9 @@ class PersonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //initViews()
-
-        RequestToAPI.character.observe(viewLifecycleOwner, { character ->
-            characters.add(character)
-        })
-
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = CustomRecyclerAdapter(characters)
-
+        val linearLayoutManager =  LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.adapter = CustomRecyclerAdapter(CharacterRepository.CharacterList)
     }
-
-    //private fun initViews() {
-    //    image = requireView().findViewById(R.id.person_image)
-    //    description = requireView().findViewById(R.id.description)
-    //}
 }
-
-//RequestToAPI.character.observe(viewLifecycleOwner, { character ->
-//    description.text = viewModel.getCorrectData(character)
-//    Picasso.get().load(viewModel.getImage(character)).into(image)
-//})

@@ -1,4 +1,7 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.common
 
-class CharacterRepository {
+class CharacterRepository() {
+    companion object {
+        val CharacterList = ArrayList<Character>()
+    }
 }
