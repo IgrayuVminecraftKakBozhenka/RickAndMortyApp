@@ -21,9 +21,6 @@ import com.squareup.picasso.Picasso
 class PersonFragment : Fragment() {
 
     private lateinit var viewModel: PersonViewModel
-    private lateinit var image: ImageView
-    private lateinit var description: TextView
-    private val characters: MutableList<Character> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +40,6 @@ class PersonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
-        val linearLayoutManager =  LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        //recyclerView.layoutManager = linearLayoutManager
         viewPager.adapter = CustomRecyclerAdapter(CharacterRepository.CharacterList)
     }
 }
