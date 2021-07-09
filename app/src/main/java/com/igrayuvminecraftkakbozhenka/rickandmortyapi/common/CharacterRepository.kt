@@ -1,16 +1,22 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.common
 
 import androidx.lifecycle.MutableLiveData
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestToAPI
 
 class CharacterRepository() {
     companion object {
 
-        private val newCharacters = ArrayList<Character>()
-        val CharacterList = MutableLiveData<ArrayList<Character>>()
+        private val allCharacters = ArrayList<Character>()
 
         fun setData(character: Character) {
-            newCharacters.add(character)
-            CharacterList.value = newCharacters
+            allCharacters.add(character)
         }
+
+        fun getCharacterFromAPI() {
+            RequestToAPI.getCharacter()
+        }
+
+        fun getAllCharacters(): ArrayList<Character> = allCharacters
+
     }
 }

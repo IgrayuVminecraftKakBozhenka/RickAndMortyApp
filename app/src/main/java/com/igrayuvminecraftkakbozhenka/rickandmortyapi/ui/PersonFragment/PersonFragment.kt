@@ -41,7 +41,7 @@ class PersonFragment : Fragment() {
         val dotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.dots_indicator)
         dotsIndicator.setViewPager2(viewPager)
 
-        CharacterRepository.CharacterList.observe(viewLifecycleOwner, { characters ->
+        viewModel.characterList.observe(viewLifecycleOwner, { characters ->
             adapter.setData(characters)
         })
 
@@ -53,6 +53,6 @@ class PersonFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        CharacterRepository.CharacterList.value?.clear()
+
     }
 }
