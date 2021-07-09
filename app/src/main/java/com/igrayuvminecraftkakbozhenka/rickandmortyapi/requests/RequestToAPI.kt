@@ -55,18 +55,3 @@ object RequestToAPI {
         service = retrofit.create(RickAndMortyService::class.java)
     }
 }
-
-
-//call.enqueue(object : Callback<Result> {
-//
-//    override fun onResponse(call: Call<MainFragment.Response>, response: retrofit2.Response<MainFragment.Response>) {
-//        response.body().
-//
-//
-//        Log.d("TestRequest", "response $post")
-//    }
-//
-//    override fun onFailure(call: Call<MainFragment.Response>, t: Throwable) {
-//
-//    }
-//})

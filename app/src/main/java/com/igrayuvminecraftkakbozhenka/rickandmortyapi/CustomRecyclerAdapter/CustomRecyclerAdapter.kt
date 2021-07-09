@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
 import com.squareup.picasso.Picasso
 
 class CustomRecyclerAdapter(private val characters: ArrayList<Character>): RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() {
