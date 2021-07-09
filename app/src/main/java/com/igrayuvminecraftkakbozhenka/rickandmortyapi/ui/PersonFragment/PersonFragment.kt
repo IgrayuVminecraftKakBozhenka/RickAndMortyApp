@@ -35,21 +35,24 @@ class PersonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
-        viewPager.adapter = CustomRecyclerAdapter(CharacterRepository.CharacterList)
+        val adapter = CustomRecyclerAdapter()
+        viewPager.adapter = adapter
 
         val dotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.dots_indicator)
         dotsIndicator.setViewPager2(viewPager)
 
+        CharacterRepository.CharacterList.observe(viewLifecycleOwner, { characters ->
+            adapter.setData(characters)
+        })
+
         val getNewCharacterButton = view.findViewById<Button>(R.id.get_character_button)
         getNewCharacterButton.setOnClickListener {
             viewModel.getNewCharacter()
-            (viewPager.adapter as CustomRecyclerAdapter).notifyDataSetChanged()
-
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        CharacterRepository.CharacterList.clear()
+        CharacterRepository.CharacterList.value?.clear()
     }
 }

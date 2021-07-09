@@ -12,7 +12,9 @@ import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
 import com.squareup.picasso.Picasso
 
-class CustomRecyclerAdapter(private val characters: ArrayList<Character>): RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() {
+class CustomRecyclerAdapter(): RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>() {
+
+    private val characters: ArrayList<Character> = ArrayList()
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var image: ImageView = itemView.findViewById(R.id.person_image)
@@ -35,4 +37,10 @@ class CustomRecyclerAdapter(private val characters: ArrayList<Character>): Recyc
         Picasso.get().load(characters[position].image).into(holder.image)
     }
     override fun getItemCount() = characters.size
+
+    fun setData(newCharacters: ArrayList<Character>) {
+        characters.clear()
+        characters.addAll(newCharacters)
+        notifyDataSetChanged()
+    }
 }

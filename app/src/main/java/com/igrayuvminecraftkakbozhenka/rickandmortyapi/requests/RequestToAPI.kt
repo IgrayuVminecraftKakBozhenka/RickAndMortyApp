@@ -31,7 +31,7 @@ object RequestToAPI {
                 val image = response.body()!!.results[index].image
 
                 val characterFromAPI = Character(name, status, species, gender, image)
-                CharacterRepository.CharacterList.add(characterFromAPI)
+                CharacterRepository.setData(characterFromAPI)
             }
 
             override fun onFailure(call: Call<InfoData?>, t: Throwable) {
