@@ -32,6 +32,5 @@ class CustomRecyclerAdapter(private val characters: ArrayList<Character>): Recyc
         holder.description.text = characterDescription
         Picasso.get().load(characters[position].image).into(holder.image)
     }
-
     override fun getItemCount() = characters.size
 }
