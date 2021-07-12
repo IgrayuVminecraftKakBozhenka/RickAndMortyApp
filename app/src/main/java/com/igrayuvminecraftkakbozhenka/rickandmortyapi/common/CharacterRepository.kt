@@ -1,7 +1,8 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.common
 
-import androidx.lifecycle.MutableLiveData
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestToAPI
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class CharacterRepository() {
     companion object {
@@ -12,11 +13,18 @@ class CharacterRepository() {
             allCharacters.add(character)
         }
 
-        fun getCharacterFromAPI() {
-            RequestToAPI.getCharacter()
+        suspend fun getAllCharacters(): ArrayList<Character> {
+            withContext(Dispatchers.IO) {
+                RequestToAPI.getCharacter()
+            }
+            return withContext(Dispatchers.Main) {
+                allCharacters
+            }
         }
 
-        fun getAllCharacters(): ArrayList<Character> = allCharacters
-
+        fun clearRepository() {
+            allCharacters.clear()
+        }
     }
+
 }

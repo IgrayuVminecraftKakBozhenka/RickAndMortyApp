@@ -20,6 +20,7 @@ object RequestToAPI {
 
         val call = service?.listRepos()
 
+
         call?.enqueue(object : Callback<InfoData?> {
             override fun onResponse(call: Call<InfoData?>, response: Response<InfoData?>) {
                 val size = response.body()!!.results.size

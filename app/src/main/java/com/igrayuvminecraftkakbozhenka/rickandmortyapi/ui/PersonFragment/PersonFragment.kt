@@ -53,6 +53,6 @@ class PersonFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
+        CharacterRepository.clearRepository()
     }
 }
