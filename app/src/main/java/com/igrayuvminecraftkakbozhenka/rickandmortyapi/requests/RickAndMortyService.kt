@@ -2,6 +2,8 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests
 
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface RickAndMortyService {
     @GET("character")
@@ -10,8 +12,8 @@ interface RickAndMortyService {
     @GET("character/{id}")
     suspend fun getOnceCharacter(@Path ("id") id: Int): Result
 
-    @GET("character/?page={pageId}")
-    suspend fun getPageWithCharacters(@Path ("pageId") pageId: Int ): InfoData
+    @GET("character/")
+    suspend fun getPageWithCharacters(@Query ("page") page: Int ): InfoData
 
     @GET("character/?{filterOne}={parameterOne}{ampersantOne}" +
             "{filterTwo}={parameterTwo}{ampersantTwo}" +

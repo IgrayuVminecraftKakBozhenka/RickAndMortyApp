@@ -1,6 +1,5 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests
 
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 class InfoData {
@@ -11,17 +10,17 @@ class InfoData {
 class Result {
 
     @SerializedName("name")
-    var name = ""
+    val name = ""
 
     @SerializedName("status")
-    var status = ""
+    val status = ""
 
     @SerializedName("species")
-    var species = ""
+    val species = ""
 
     @SerializedName("gender")
-    var gender = ""
+    val gender = ""
 
     @SerializedName("image")
-    var image = ""
+    val image = ""
 }

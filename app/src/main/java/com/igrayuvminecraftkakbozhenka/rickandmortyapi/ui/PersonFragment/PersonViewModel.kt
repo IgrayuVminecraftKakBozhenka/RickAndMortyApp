@@ -6,19 +6,35 @@ import androidx.lifecycle.viewModelScope
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.CustomRecyclerAdapter.CustomRecyclerAdapter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestToAPI
 import kotlinx.coroutines.launch
 
 
 class PersonViewModel(): ViewModel() {
 
-    val characterList = MutableLiveData<ArrayList<Character>>()
+    val characterCache = MutableLiveData<ArrayList<Character>>()
+    val onceCharacter = MutableLiveData<Character>()
 
-    fun getNewCharacter() {
+    val repository = CharacterRepository.getInstance()
+
+    fun getNewRandomCharacter() {
         viewModelScope.launch {
-            val characters = CharacterRepository.getAllCharacters()
-            characterList.postValue(characters)
+            val id = (0..671).random()
+            val character = repository!!.getOnceCharacter(id)
+            onceCharacter.postValue(character)
         }
+    }
+
+    fun getPageWithCharacters() {
+        viewModelScope.launch {
+            val pageId = (0..34).random()
+            val characters = repository!!.getPageWithCharacters(pageId)
+            characterCache.postValue(characters)
+        }
+    }
+
+    fun clearCache() {
+        repository!!.clearRepository()
+        characterCache.value!!.clear()
     }
 
 }
