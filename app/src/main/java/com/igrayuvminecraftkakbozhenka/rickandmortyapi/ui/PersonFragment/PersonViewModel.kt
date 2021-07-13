@@ -10,7 +10,7 @@ import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestToAPI
 import kotlinx.coroutines.launch
 
 
-class PersonViewModel: ViewModel() {
+class PersonViewModel(): ViewModel() {
 
     val characterList = MutableLiveData<ArrayList<Character>>()
 

@@ -9,6 +9,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.HttpURLConnection
 
 
 object RequestToAPI {
@@ -20,7 +21,7 @@ object RequestToAPI {
 
         val call = service?.listRepos()
 
-
+        call?.execute()?.body()?.results.size
         call?.enqueue(object : Callback<InfoData?> {
             override fun onResponse(call: Call<InfoData?>, response: Response<InfoData?>) {
                 val size = response.body()!!.results.size
@@ -51,6 +52,7 @@ object RequestToAPI {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://rickandmortyapi.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory()
             .client(builder.build())
             .build()
         service = retrofit.create(RickAndMortyService::class.java)

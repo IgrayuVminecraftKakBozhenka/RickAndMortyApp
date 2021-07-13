@@ -1,10 +1,12 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.CustomRecyclerAdapter
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
@@ -29,14 +31,18 @@ class CustomRecyclerAdapter(): RecyclerView.Adapter<CustomRecyclerAdapter.MyView
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val characterDescription = "Name: " + characters[position].name + "\n" +
-                "Gender: " + characters[position].gender + "\n" +
-                "Species: " + characters[position].species + "\n" +
-                "Status: " + characters[position].status + "\n"
-        holder.description.text = characterDescription
-        Picasso.get().load(characters[position].image).into(holder.image)
+        if (position == characters.size) {
+            holder.image.setImageResource(R.drawable.plus)
+        } else {
+            val characterDescription = "Name: " + characters[position].name + "\n" +
+                    "Gender: " + characters[position].gender + "\n" +
+                    "Species: " + characters[position].species + "\n" +
+                    "Status: " + characters[position].status + "\n"
+            holder.description.text = characterDescription
+            Picasso.get().load(characters[position].image).into(holder.image)
+        }
     }
-    override fun getItemCount() = characters.size
+    override fun getItemCount() = characters.size + 1
 
     fun setData(newCharacters: ArrayList<Character>) {
         characters.clear()
