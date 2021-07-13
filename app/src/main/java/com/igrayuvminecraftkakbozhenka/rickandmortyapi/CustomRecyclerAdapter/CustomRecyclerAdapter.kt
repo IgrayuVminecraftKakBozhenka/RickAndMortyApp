@@ -33,6 +33,11 @@ class CustomRecyclerAdapter(): RecyclerView.Adapter<CustomRecyclerAdapter.MyView
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         if (position == characters.size) {
             holder.image.setImageResource(R.drawable.plus)
+            holder.description.setText(R.string.get_new_character)
+            holder.itemView.setOnClickListener { it ->
+
+
+            }
         } else {
             val characterDescription = "Name: " + characters[position].name + "\n" +
                     "Gender: " + characters[position].gender + "\n" +
