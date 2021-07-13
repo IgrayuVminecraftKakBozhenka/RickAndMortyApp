@@ -1,7 +1,5 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests
 
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.main.MainFragment
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -10,10 +8,10 @@ interface RickAndMortyService {
     suspend fun getCharacters(): InfoData
 
     @GET("character/{id}")
-    suspend fun getOnceCharacter(@Path ("id") id: Int)
+    suspend fun getOnceCharacter(@Path ("id") id: Int): Result
 
     @GET("character/?page={pageId}")
-    suspend fun getPageWithCharacters(@Path ("pageId") pageId: Int )
+    suspend fun getPageWithCharacters(@Path ("pageId") pageId: Int ): InfoData
 
     @GET("character/?{filterOne}={parameterOne}{ampersantOne}" +
             "{filterTwo}={parameterTwo}{ampersantTwo}" +
@@ -24,5 +22,5 @@ interface RickAndMortyService {
                                       @Path ("filterTwo") filterTwo: String?, @Path("parameterTwo") parameterTwo: String?, @Path("ampersantTwo") ampersantTwo: Char?,
                                       @Path ("filterThree") filterThree: String?, @Path("parameterThree") parameterThree: String?, @Path("ampersantThree") ampersantThree: Char?,
                                       @Path ("filterFour") filterFour: String?, @Path("parameterFour") parameterFour: String?, @Path("ampersantFour") ampersantFour: Char?,
-                                      @Path ("filterFive") filterFive: String?, @Path("parameterFive") parameterFive: String?, @Path("ampersantFive") ampersantFive: Char?)
+                                      @Path ("filterFive") filterFive: String?, @Path("parameterFive") parameterFive: String?, @Path("ampersantFive") ampersantFive: Char?): InfoData
 }
