@@ -5,4 +5,5 @@
     <string name="state">Состояние:</string>
     <string name="race">Раса:</string>
     <string name="first_seen">Впервые замечен:</string>
+    <string name="get_new_character">Получить нового персонажа</string>
 </resources>

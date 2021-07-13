@@ -1,4 +1,4 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.common
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi
 
 import android.app.Application
 import com.github.terrakok.cicerone.Cicerone
