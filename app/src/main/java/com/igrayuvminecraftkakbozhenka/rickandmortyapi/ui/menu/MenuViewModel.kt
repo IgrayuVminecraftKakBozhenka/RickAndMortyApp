@@ -11,4 +11,8 @@ class MenuViewModel(application: Application) : AndroidViewModel(application) {
     fun goToPerson() {
         (app as App).router.navigateTo(Screens.Person())
     }
+
+    fun goToFilter() {
+        (app as App).router.navigateTo(Screens.Filters())
+    }
 }

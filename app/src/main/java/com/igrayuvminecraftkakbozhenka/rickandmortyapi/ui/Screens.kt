@@ -2,6 +2,7 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.PersonFragment.PersonFragment
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.filters.FiltersFragment
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.menu.MenuFragment
 
 object Screens {
@@ -12,5 +13,9 @@ object Screens {
 
     fun Person() = FragmentScreen {
         PersonFragment()
+    }
+
+    fun Filters() = FragmentScreen {
+        FiltersFragment()
     }
 }

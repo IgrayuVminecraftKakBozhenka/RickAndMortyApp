@@ -33,5 +33,10 @@ class MenuFragment : Fragment() {
         shwifty.setOnClickListener {
             viewModel.goToPerson()
         }
+
+        val filterButton = view.findViewById<Button>(R.id.get_filtered_characters_button)
+        filterButton.setOnClickListener {
+            viewModel.goToFilter()
+        }
     }
 }
