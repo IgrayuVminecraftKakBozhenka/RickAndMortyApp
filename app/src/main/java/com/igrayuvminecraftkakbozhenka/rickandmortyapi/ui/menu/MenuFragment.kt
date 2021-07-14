@@ -1,4 +1,4 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.main
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.menu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,25 +10,25 @@ import androidx.lifecycle.ViewModelProvider
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
 
 
-class MainFragment : Fragment() {
+class MenuFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: MenuViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_menu, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-            .create(MainViewModel::class.java)
+            .create(MenuViewModel::class.java)
 
-        val shwifty = view.findViewById<Button>(R.id.shwifty_button)
+        val shwifty = view.findViewById<Button>(R.id.get_twenty_characters_button)
 
         shwifty.setOnClickListener {
             viewModel.goToPerson()

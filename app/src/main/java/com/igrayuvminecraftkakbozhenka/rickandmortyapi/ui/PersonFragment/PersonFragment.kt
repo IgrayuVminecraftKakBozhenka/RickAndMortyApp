@@ -8,11 +8,11 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.person_adapter.PersonAdapter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.person_adapter.PersonAdapter
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
-class PersonFragment : Fragment() {
+class PersonFragment : Fragment(), View.OnClickListener, PersonAdapter.PersonListener {
 
     private lateinit var viewModel: PersonViewModel
 
@@ -34,24 +34,40 @@ class PersonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
-        val adapter = PersonAdapter()
+        val adapter = PersonAdapter(this)
         viewPager.adapter = adapter
 
         val dotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.dots_indicator)
         dotsIndicator.setViewPager2(viewPager)
 
         viewModel.characterCache.observe(viewLifecycleOwner, { characters ->
-            adapter.setData(characters)
+            adapter.setDataList(characters)
+        })
+
+        viewModel.onceCharacter.observe(viewLifecycleOwner, { character ->
+            adapter.setOneCharacter(character)
         })
 
         val getNewCharacterButton = view.findViewById<Button>(R.id.get_character_button)
-        getNewCharacterButton.setOnClickListener {
-            viewModel.getPageWithCharacters()
-        }
+        getNewCharacterButton.setOnClickListener(this)
+
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
         viewModel.clearCache()
     }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.get_character_button -> viewModel.getPageWithCharacters()
+        }
+
+    }
+
+    override fun getOnceRandomCharacter() {
+        viewModel.getNewRandomCharacter()
+    }
+
 }

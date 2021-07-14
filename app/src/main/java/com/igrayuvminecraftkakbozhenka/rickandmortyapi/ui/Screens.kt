@@ -2,12 +2,12 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.PersonFragment.PersonFragment
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.main.MainFragment
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.menu.MenuFragment
 
 object Screens {
 
     fun Main() = FragmentScreen {
-        MainFragment()
+        MenuFragment()
     }
 
     fun Person() = FragmentScreen {
