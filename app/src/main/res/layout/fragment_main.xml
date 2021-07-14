@@ -17,17 +17,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32999998"
+        app:layout_constraintVertical_bias="0.050000012"
         app:srcCompat="@drawable/rick" />
 
     <Button
-        android:id="@+id/shwifty_button"
+        android:id="@+id/get_twenty_characters_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/shwifty"
+        android:text="@string/get_twenty_characters"
         android:padding="10dp"
         android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,5 +35,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/get_random_character_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="@string/get_random_character"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/get_twenty_characters_button"
+        app:layout_constraintVertical_bias="0.050000012" />
+
+    <Button
+        android:id="@+id/get_filtered_characters_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:paddingLeft="105dp"
+        android:paddingRight="105dp"
+        android:text="@string/filter_settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/get_twenty_characters_button"
+        app:layout_constraintVertical_bias="0.265" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
