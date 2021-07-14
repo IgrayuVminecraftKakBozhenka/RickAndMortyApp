@@ -33,13 +33,5 @@ class MainFragment : Fragment() {
         shwifty.setOnClickListener {
             viewModel.goToPerson()
         }
-
-
     }
-
-
 }
-
-//RequestToAPI.character.observe(viewLifecycleOwner, { character ->
-//    Log.d("Rick", character.name)
-//})

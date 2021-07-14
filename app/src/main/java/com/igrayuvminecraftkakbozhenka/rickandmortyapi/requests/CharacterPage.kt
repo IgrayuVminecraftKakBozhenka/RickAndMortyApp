@@ -2,12 +2,7 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests
 
 import com.google.gson.annotations.SerializedName
 
-class InfoData {
-    @SerializedName("results")
-    var results: ArrayList<Result> = ArrayList()
-}
-
-class Result {
+class CharacterPage {
 
     @SerializedName("name")
     val name = ""
@@ -23,4 +18,5 @@ class Result {
 
     @SerializedName("image")
     val image = ""
+
 }

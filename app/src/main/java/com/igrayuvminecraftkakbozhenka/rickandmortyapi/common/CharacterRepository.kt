@@ -1,6 +1,6 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.common
 
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RickAndMortyService
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestsToAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CharacterRepository private constructor() {
 
-    private val retrofit: RickAndMortyService
+    private val retrofit: RequestsToAPI
     private val charactersCache = ArrayList<Character>()
 
     companion object {
@@ -83,7 +83,7 @@ class CharacterRepository private constructor() {
             .baseUrl("https://rickandmortyapi.com/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(builder.build())
-            .build().create(RickAndMortyService::class.java)
+            .build().create(RequestsToAPI::class.java)
     }
 
 }

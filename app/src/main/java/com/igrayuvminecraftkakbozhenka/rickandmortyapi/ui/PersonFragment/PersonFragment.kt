@@ -8,9 +8,8 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.CustomRecyclerAdapter.CustomRecyclerAdapter
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.person_adapter.PersonAdapter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
 class PersonFragment : Fragment() {
@@ -35,7 +34,7 @@ class PersonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
-        val adapter = CustomRecyclerAdapter()
+        val adapter = PersonAdapter()
         viewPager.adapter = adapter
 
         val dotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.dots_indicator)

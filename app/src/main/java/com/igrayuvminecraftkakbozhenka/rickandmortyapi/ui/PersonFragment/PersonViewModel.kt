@@ -3,7 +3,6 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.PersonFragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.CustomRecyclerAdapter.CustomRecyclerAdapter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
 import kotlinx.coroutines.launch
@@ -14,7 +13,7 @@ class PersonViewModel(): ViewModel() {
     val characterCache = MutableLiveData<ArrayList<Character>>()
     val onceCharacter = MutableLiveData<Character>()
 
-    val repository = CharacterRepository.getInstance()
+    private val repository = CharacterRepository.getInstance()
 
     fun getNewRandomCharacter() {
         viewModelScope.launch {
