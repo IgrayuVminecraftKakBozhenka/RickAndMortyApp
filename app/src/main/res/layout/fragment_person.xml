@@ -48,7 +48,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_button"
         android:padding="10dp"
-        android:text="@string/get_random_character"
+        android:text="@string/get_twenty_characters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

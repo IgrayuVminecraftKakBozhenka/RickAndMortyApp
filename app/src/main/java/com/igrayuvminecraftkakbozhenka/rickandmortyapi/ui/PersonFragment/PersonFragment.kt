@@ -15,6 +15,9 @@ import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 class PersonFragment : Fragment(), View.OnClickListener, PersonAdapter.PersonListener {
 
     private lateinit var viewModel: PersonViewModel
+    private lateinit var adapter: PersonAdapter
+    private lateinit var getNewCharacterButton: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,24 +37,14 @@ class PersonFragment : Fragment(), View.OnClickListener, PersonAdapter.PersonLis
         super.onViewCreated(view, savedInstanceState)
 
         val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
-        val adapter = PersonAdapter(this)
+        adapter = PersonAdapter(this)
         viewPager.adapter = adapter
+
+        observeLiveData()
+        initComponents()
 
         val dotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.dots_indicator)
         dotsIndicator.setViewPager2(viewPager)
-
-        viewModel.characterCache.observe(viewLifecycleOwner, { characters ->
-            adapter.setDataList(characters)
-        })
-
-        viewModel.onceCharacter.observe(viewLifecycleOwner, { character ->
-            adapter.setOneCharacter(character)
-        })
-
-        val getNewCharacterButton = view.findViewById<Button>(R.id.get_character_button)
-        getNewCharacterButton.setOnClickListener(this)
-
-
     }
 
     override fun onDestroy() {
@@ -68,6 +61,21 @@ class PersonFragment : Fragment(), View.OnClickListener, PersonAdapter.PersonLis
 
     override fun getOnceRandomCharacter() {
         viewModel.getNewRandomCharacter()
+    }
+
+    private fun observeLiveData() {
+        viewModel.characterCache.observe(viewLifecycleOwner, { characters ->
+            adapter.setDataList(characters)
+        })
+
+        viewModel.onceCharacter.observe(viewLifecycleOwner, { character ->
+            adapter.setOneCharacter(character)
+        })
+    }
+
+    private fun initComponents() {
+        getNewCharacterButton = requireView().findViewById(R.id.get_character_button)
+        getNewCharacterButton.setOnClickListener(this)
     }
 
 }

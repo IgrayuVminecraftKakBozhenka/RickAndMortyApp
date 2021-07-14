@@ -32,8 +32,8 @@ class PersonViewModel(): ViewModel() {
     }
 
     fun clearCache() {
-        repository!!.clearRepository()
-        characterCache.value!!.clear()
+        repository?.clearRepository()
+        characterCache.value?.clear()
     }
 
 }

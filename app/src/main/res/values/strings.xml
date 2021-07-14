@@ -8,4 +8,5 @@
     <string name="get_random_character">Получить случайного персонажа</string>
     <string name="get_twenty_characters">Получить случайную страницу персонажей</string>
     <string name="filter_settings">Настроить фильтры</string>
+    <string name="get_characters">Получить персонажей</string>
 </resources>
