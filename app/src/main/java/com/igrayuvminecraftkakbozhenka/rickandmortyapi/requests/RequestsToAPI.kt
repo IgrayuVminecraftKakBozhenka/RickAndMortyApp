@@ -13,14 +13,7 @@ interface RequestsToAPI {
     @GET("character/")
     suspend fun getPageWithCharacters(@Query ("page") page: Int ): PageWithCharacters
 
-    @GET("character/?{filterOne}={parameterOne}{ampersantOne}" +
-            "{filterTwo}={parameterTwo}{ampersantTwo}" +
-            "{filterThree}={parameterThree}{ampersantThree}" +
-            "{filterFour}={parameterFour}{ampersantFour}" +
-            "{filterFive}={parameterFive}{ampersantFive}")
-    suspend fun getFilteredCharacters(@Path ("filterOne") filterOne: String, @Path("parameterOne") parameterOne: String, @Path("ampersantOne") ampersantOne: Char?,
-                                      @Path ("filterTwo") filterTwo: String?, @Path("parameterTwo") parameterTwo: String?, @Path("ampersantTwo") ampersantTwo: Char?,
-                                      @Path ("filterThree") filterThree: String?, @Path("parameterThree") parameterThree: String?, @Path("ampersantThree") ampersantThree: Char?,
-                                      @Path ("filterFour") filterFour: String?, @Path("parameterFour") parameterFour: String?, @Path("ampersantFour") ampersantFour: Char?,
-                                      @Path ("filterFive") filterFive: String?, @Path("parameterFive") parameterFive: String?, @Path("ampersantFive") ampersantFive: Char?): PageWithCharacters
+    @GET("character")
+    suspend fun getFilteredCharacters(@Query ("name") name: String? = null , @Query ("status") status: String? = null,
+    @Query ("species") species: String? = null, @Query ("type") type: String? = null, @Query ("gender") gender: String? = null): PageWithCharacters
 }

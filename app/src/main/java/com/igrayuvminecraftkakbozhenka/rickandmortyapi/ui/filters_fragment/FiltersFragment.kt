@@ -1,4 +1,4 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.filters
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.filters_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.filtres.Parameters
 
 class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
@@ -47,18 +47,24 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
     }
 
     override fun onClick(v: View?) {
-
+        when(v?.id) {
+            R.id.setup_filters_button -> {
+                Parameters.name = nameInput.text.toString()
+                Parameters.species = speciesInput.text.toString()
+            }
+        }
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
         when (checkedId) {
-            R.id.male_radio_button -> TODO()
-            R.id.female_radio_button -> TODO()
-            R.id.unknown_gender_radio_button -> TODO()
+            R.id.male_radio_button -> Parameters.gender = "male"
+            R.id.female_radio_button -> Parameters.gender = "female"
+            R.id.unknown_gender_radio_button -> Parameters.gender = "unknown"
+            R.id.genderless_radio_button -> Parameters.gender = "genderless"
 
-            R.id.alive_radio_button -> TODO()
-            R.id.dead_radio_button -> TODO()
-            R.id.unknown_status_radio_button -> TODO()
+            R.id.alive_radio_button -> Parameters.status = "alive"
+            R.id.dead_radio_button -> Parameters.status = "dead"
+            R.id.unknown_status_radio_button -> Parameters.status = "unknown"
         }
     }
 }

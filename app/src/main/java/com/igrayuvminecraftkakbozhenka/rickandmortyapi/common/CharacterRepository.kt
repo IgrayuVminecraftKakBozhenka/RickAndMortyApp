@@ -1,6 +1,7 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.common
 
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestsToAPI
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.filtres.Parameters
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -37,7 +38,7 @@ class CharacterRepository private constructor() {
 
     suspend fun getPageWithCharacters(pageId: Int): ArrayList<Character> {
         val characters = retrofit.getPageWithCharacters(pageId).results
-        characters.forEach() { result ->
+        characters.forEach { result ->
             val character =
                 Character(result.name, result.status, result.species, result.gender, result.image)
             charactersCache.add(character)
@@ -45,22 +46,9 @@ class CharacterRepository private constructor() {
         return charactersCache
     }
 
-    suspend fun getFilteredCharacters(
-        filterOne: String, parameterOne: String, ampersantOne: Char?,
-        filterTwo: String?, parameterTwo: String?, ampersantTwo: Char?,
-        filterThree: String?, parameterThree: String?, ampersantThree: Char?,
-        filterFour: String?, parameterFour: String?, ampersantFour: Char?,
-        filterFive: String?, parameterFive: String?, ampersantFive: Char?
-    ): ArrayList<Character> {
-        val characters = retrofit.getFilteredCharacters(
-            filterOne, parameterOne, ampersantOne,
-            filterTwo, parameterTwo, ampersantTwo,
-            filterThree, parameterThree, ampersantThree,
-            filterFour, parameterFour, ampersantFour,
-            filterFive, parameterFive, ampersantFive
-        ).results
-
-        characters.forEach() { result ->
+    suspend fun getFilteredCharacters(): ArrayList<Character> {
+        val characters = retrofit.getFilteredCharacters(Parameters.name, Parameters.status, Parameters.species, Parameters.type, Parameters.gender).results
+        characters.forEach { result ->
             val character =
                 Character(result.name, result.status, result.species, result.gender, result.image)
             charactersCache.add(character)
