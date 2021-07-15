@@ -58,6 +58,13 @@
             android:textColor="@color/white" />
 
         <RadioButton
+            android:id="@+id/genderless_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/genderless"
+            android:textColor="@color/white" />
+
+        <RadioButton
             android:id="@+id/unknown_gender_radio_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,10 +80,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51">
+        app:layout_constraintVertical_bias="0.54">
 
         <RadioButton
             android:id="@+id/alive_radio_button"

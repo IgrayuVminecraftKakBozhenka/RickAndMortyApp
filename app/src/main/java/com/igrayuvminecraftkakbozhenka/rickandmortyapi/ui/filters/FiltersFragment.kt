@@ -19,15 +19,6 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
     private lateinit var statusRadioGroup: RadioGroup
     private lateinit var setupButton: Button
 
-    private lateinit var maleRadioButton: RadioButton
-    private lateinit var femaleRadioButton: RadioButton
-    private lateinit var unknownGenderRadioButton: RadioButton
-
-    private lateinit var aliveRadioButton: RadioButton
-    private lateinit var deadRadioButton: RadioButton
-    private lateinit var unknownStatusRadioButton: RadioButton
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,25 +36,29 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
     private fun init() {
         nameInput = requireView().findViewById(R.id.input_name)
         speciesInput = requireView().findViewById(R.id.input_species)
+
         genderRadioGroup = requireView().findViewById(R.id.gender_radio_group)
+        genderRadioGroup.setOnCheckedChangeListener(this)
 
         statusRadioGroup = requireView().findViewById(R.id.status_radio_group)
+        statusRadioGroup.setOnCheckedChangeListener(this)
+
         setupButton = requireView().findViewById(R.id.setup_filters_button)
-
-        maleRadioButton = requireView().findViewById(R.id.male_radio_button)
-        femaleRadioButton = requireView().findViewById(R.id.female_radio_button)
-        unknownGenderRadioButton = requireView().findViewById(R.id.unknown_gender_radio_button)
-
-        aliveRadioButton = requireView().findViewById(R.id.alive_radio_button)
-        deadRadioButton = requireView().findViewById(R.id.dead_radio_button)
-        unknownStatusRadioButton = requireView().findViewById(R.id.unknown_status_radio_button)
     }
 
     override fun onClick(v: View?) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
-        TODO("Not yet implemented")
+        when (checkedId) {
+            R.id.male_radio_button -> TODO()
+            R.id.female_radio_button -> TODO()
+            R.id.unknown_gender_radio_button -> TODO()
+
+            R.id.alive_radio_button -> TODO()
+            R.id.dead_radio_button -> TODO()
+            R.id.unknown_status_radio_button -> TODO()
+        }
     }
 }
