@@ -3,9 +3,10 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.person_fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.filtres.FiltersRepos
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.Character
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.CharacterRepository
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.FiltersRepos
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.FiltersRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -15,10 +16,17 @@ class PersonViewModel: ViewModel() {
 
     val characterCache = MutableLiveData<ArrayList<Character>>()
     val onceCharacter = MutableLiveData<Character>()
-    private val repository = CharacterRepository.getInstance()
 
-    fun getFilteredCharacters(): Flow<ArrayList<Character>> {
-        return FiltersRepos.getFilteredCharacters()
+    private val repository = CharacterRepository.getInstance()
+    private val filtersRepository = FiltersRepository.getInstance()
+
+    fun chekFilters() {
+        viewModelScope.launch {
+            val filter = filtersRepository?.getMeFiltersIfExist()
+            if ( filter != null) {
+                val characters = repository?.getFilteredCharacters()
+            }
+        }
     }
 
 

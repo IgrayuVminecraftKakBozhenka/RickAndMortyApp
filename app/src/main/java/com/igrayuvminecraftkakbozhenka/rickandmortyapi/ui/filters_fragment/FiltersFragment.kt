@@ -10,16 +10,22 @@ import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.filtres.Parameters
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.Filter
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.FiltersRepository
 
 class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private lateinit var viewModel: FilterViewModel
+
     private lateinit var nameInput: EditText
     private lateinit var speciesInput: EditText
     private lateinit var genderRadioGroup: RadioGroup
     private lateinit var statusRadioGroup: RadioGroup
     private lateinit var setupButton: Button
+
+    private lateinit var filter: Filter
+
+    private val filtersRepository = FiltersRepository.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,8 +61,9 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.setup_filters_button -> {
-                Parameters.name = nameInput.text.toString()
-                Parameters.species = speciesInput.text.toString()
+                filter.name = nameInput.text.toString()
+                filter.species = speciesInput.text.toString()
+                filtersRepository?.filter = filter
                 viewModel.goToPerson()
             }
         }
@@ -64,14 +71,14 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
         when (checkedId) {
-            R.id.male_radio_button -> Parameters.gender = "male"
-            R.id.female_radio_button -> Parameters.gender = "female"
-            R.id.unknown_gender_radio_button -> Parameters.gender = "unknown"
-            R.id.genderless_radio_button -> Parameters.gender = "genderless"
+            R.id.male_radio_button -> filter.gender = "male"
+            R.id.female_radio_button -> filter.gender = "female"
+            R.id.unknown_gender_radio_button -> filter.gender = "unknown"
+            R.id.genderless_radio_button -> filter.gender = "genderless"
 
-            R.id.alive_radio_button -> Parameters.status = "alive"
-            R.id.dead_radio_button -> Parameters.status = "dead"
-            R.id.unknown_status_radio_button -> Parameters.status = "unknown"
+            R.id.alive_radio_button -> filter.status = "alive"
+            R.id.dead_radio_button -> filter.status = "dead"
+            R.id.unknown_status_radio_button -> filter.status = "unknown"
         }
     }
 }

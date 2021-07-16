@@ -1,4 +1,4 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.api
 
 import com.google.gson.annotations.SerializedName
 

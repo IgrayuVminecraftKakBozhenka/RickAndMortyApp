@@ -1,9 +1,9 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.api
 
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.PageWithCharacters
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import retrofit2.http.Url
 
 interface RequestsToAPI {
 

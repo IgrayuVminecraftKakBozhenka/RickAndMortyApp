@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.person_adapter.PersonAdapter
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.person_fragment.adapter.PersonAdapter
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
@@ -44,15 +44,6 @@ class PersonFragment : Fragment(), View.OnClickListener, PersonAdapter.PersonLis
 
         observeLiveData()
         initComponents()
-
-        val scope = CoroutineScope(Dispatchers.IO)
-
-        scope.launch {
-            viewModel.getFilteredCharacters().collect() { filteredCharacters ->
-                adapter.setDataList(filteredCharacters)
-            }
-        }
-
 
         val dotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.dots_indicator)
         dotsIndicator.setViewPager2(viewPager)

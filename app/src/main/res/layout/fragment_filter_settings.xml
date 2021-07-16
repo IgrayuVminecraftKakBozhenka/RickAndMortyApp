@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/name_character"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/species_character"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,12 +36,12 @@
         android:id="@+id/gender_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/status_radio_group"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35000002">
+        app:layout_constraintTop_toBottomOf="@+id/input_species"
+        app:layout_constraintVertical_bias="0.100000024">
 
         <RadioButton
             android:id="@+id/male_radio_button"
@@ -78,12 +78,12 @@
         android:id="@+id/status_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/setup_filters_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54">
+        app:layout_constraintTop_toBottomOf="@+id/gender_radio_group">
 
         <RadioButton
             android:id="@+id/alive_radio_button"
@@ -112,14 +112,21 @@
         android:id="@+id/setup_filters_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/setup_filters"
+        android:layout_marginTop="@dimen/margin"
         android:background="@drawable/rounded_button"
         android:padding="10dp"
+        android:text="@string/setup_filters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_species"
-        app:layout_constraintVertical_bias="0.59000003" />
+        app:layout_constraintTop_toBottomOf="@+id/status_radio_group" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="37dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

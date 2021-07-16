@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/padding"
         android:text="@string/get_characters"
         android:background="@drawable/rounded_button"
         app:layout_constraintBottom_toBottomOf="parent"

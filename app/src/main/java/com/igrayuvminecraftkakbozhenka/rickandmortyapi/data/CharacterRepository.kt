@@ -1,7 +1,8 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.common
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.data
 
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.requests.RequestsToAPI
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.filtres.Parameters
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.api.RequestsToAPI
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.Filter
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.Character
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -46,8 +47,8 @@ class CharacterRepository private constructor() {
         return charactersCache
     }
 
-    suspend fun getFilteredCharacters(): ArrayList<Character> {
-        val characters = retrofit.getFilteredCharacters(Parameters.name, Parameters.status, Parameters.species, Parameters.type, Parameters.gender).results
+    suspend fun getFilteredCharacters(filter: Filter?): ArrayList<Character> {
+        val characters = retrofit.getFilteredCharacters(filter?.name, filter?.status, filter?.species, filter?.type, filter?.gender).results
         characters.forEach { result ->
             val character =
                 Character(result.name, result.status, result.species, result.gender, result.image)

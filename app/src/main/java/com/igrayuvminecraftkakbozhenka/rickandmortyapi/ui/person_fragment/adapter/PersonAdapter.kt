@@ -1,4 +1,4 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.person_adapter
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.person_fragment.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.Character
 import com.squareup.picasso.Picasso
 
 class PersonAdapter(private val listener: PersonListener): RecyclerView.Adapter<PersonAdapter.MyViewHolder>() {
