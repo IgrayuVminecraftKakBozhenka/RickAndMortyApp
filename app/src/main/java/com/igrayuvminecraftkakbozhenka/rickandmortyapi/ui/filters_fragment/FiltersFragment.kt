@@ -8,11 +8,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.filtres.Parameters
 
 class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
+    private lateinit var viewModel: FilterViewModel
     private lateinit var nameInput: EditText
     private lateinit var speciesInput: EditText
     private lateinit var genderRadioGroup: RadioGroup
@@ -30,10 +32,13 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-
     }
 
     private fun init() {
+
+        viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
+            .create(FilterViewModel::class.java)
+
         nameInput = requireView().findViewById(R.id.input_name)
         speciesInput = requireView().findViewById(R.id.input_species)
 
@@ -44,6 +49,7 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
         statusRadioGroup.setOnCheckedChangeListener(this)
 
         setupButton = requireView().findViewById(R.id.setup_filters_button)
+        setupButton.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -51,6 +57,7 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
             R.id.setup_filters_button -> {
                 Parameters.name = nameInput.text.toString()
                 Parameters.species = speciesInput.text.toString()
+                viewModel.goToPerson()
             }
         }
     }

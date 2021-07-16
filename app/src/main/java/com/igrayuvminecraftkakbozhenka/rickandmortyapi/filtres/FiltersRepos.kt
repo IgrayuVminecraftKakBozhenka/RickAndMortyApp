@@ -11,15 +11,16 @@ import java.lang.Exception
 
 object FiltersRepos {
 
-    val filteredCharacters = MutableSharedFlow<ArrayList<Character>>()
+
     private val repository = CharacterRepository.getInstance()
 
-    suspend fun getFilteredCharacters() {
-
-        val characters = repository?.getFilteredCharacters()
+    fun getFilteredCharacters(): Flow<ArrayList<Character>> = flow {
         try {
-            filteredCharacters.emit(characters!!)
-        } catch (e: Exception) { Log.d("null", "null") }
+            val filteredCharacters = repository!!.getFilteredCharacters()
+            emit(filteredCharacters)
+        } catch (e: Exception) {
+            Log.d("error", e.toString())
+        }
     }
 
 }

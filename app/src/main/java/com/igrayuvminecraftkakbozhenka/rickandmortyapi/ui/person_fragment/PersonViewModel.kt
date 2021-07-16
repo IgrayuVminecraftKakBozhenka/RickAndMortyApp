@@ -1,4 +1,4 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.PersonFragment
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.person_fragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -6,17 +6,20 @@ import androidx.lifecycle.viewModelScope
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.Character
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.common.CharacterRepository
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.filtres.FiltersRepos
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 
-class PersonViewModel(): ViewModel() {
+class PersonViewModel: ViewModel() {
 
 
     val characterCache = MutableLiveData<ArrayList<Character>>()
     val onceCharacter = MutableLiveData<Character>()
-    val filteredCharacters: MutableLiveData<ArrayList<Character>> = FiltersRepos.filteredCharacters.
-
     private val repository = CharacterRepository.getInstance()
+
+    fun getFilteredCharacters(): Flow<ArrayList<Character>> {
+        return FiltersRepos.getFilteredCharacters()
+    }
 
 
     fun getNewRandomCharacter() {
@@ -39,5 +42,4 @@ class PersonViewModel(): ViewModel() {
         repository?.clearRepository()
         characterCache.value?.clear()
     }
-
 }
