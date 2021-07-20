@@ -10,8 +10,8 @@ import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.DataRepository
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.Filter
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.FiltersRepository
 
 class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
@@ -23,9 +23,9 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
     private lateinit var statusRadioGroup: RadioGroup
     private lateinit var setupButton: Button
 
-    private lateinit var filter: Filter
+    private var filter = Filter()
 
-    private val filtersRepository = FiltersRepository.getInstance()
+    private val repository = DataRepository.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +63,7 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
             R.id.setup_filters_button -> {
                 filter.name = nameInput.text.toString()
                 filter.species = speciesInput.text.toString()
-                filtersRepository?.filter = filter
+                repository?.filter = filter
                 viewModel.goToPerson()
             }
         }

@@ -1,4 +1,4 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models
 
 class Character(val name: String,
                 val status: String,

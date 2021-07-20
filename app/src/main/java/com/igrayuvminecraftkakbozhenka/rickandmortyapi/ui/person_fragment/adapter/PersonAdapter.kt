@@ -8,14 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.Character
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Character
 import com.squareup.picasso.Picasso
 
-class PersonAdapter(private val listener: PersonListener): RecyclerView.Adapter<PersonAdapter.MyViewHolder>() {
+class PersonAdapter(private val listener: PersonListener): RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 
     private val characters: ArrayList<Character> = ArrayList()
 
-    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class PersonViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var image: ImageView = itemView.findViewById(R.id.person_image)
         var description: TextView = itemView.findViewById(R.id.description)
 
@@ -30,13 +30,15 @@ class PersonAdapter(private val listener: PersonListener): RecyclerView.Adapter<
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.character_item, parent, false)
-        return MyViewHolder(itemView)
+        return PersonViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         if (position == characters.size) {
             holder.bind()
         } else {

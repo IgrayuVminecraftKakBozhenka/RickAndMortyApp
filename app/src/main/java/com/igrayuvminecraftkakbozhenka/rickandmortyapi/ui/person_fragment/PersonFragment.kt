@@ -44,6 +44,7 @@ class PersonFragment : Fragment(), View.OnClickListener, PersonAdapter.PersonLis
 
         observeLiveData()
         initComponents()
+        viewModel.chekFilters()
 
         val dotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.dots_indicator)
         dotsIndicator.setViewPager2(viewPager)

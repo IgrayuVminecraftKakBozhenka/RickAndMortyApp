@@ -2,28 +2,31 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.data
 
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.api.RequestsToAPI
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.Filter
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.Character
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Character
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.interfaces.CharacterRepositoryInterface
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class CharacterRepository private constructor() {
+class DataRepository private constructor() : CharacterRepositoryInterface {
+
+    var filter: Filter? = null
 
     private val retrofit: RequestsToAPI
     private val charactersCache = ArrayList<Character>()
 
     companion object {
 
-        private var instance: CharacterRepository? = null
+        private var instance: DataRepository? = null
 
         private fun createInstance() {
             if (instance == null) {
-                instance = CharacterRepository()
+                instance = DataRepository()
             }
         }
 
-        fun getInstance(): CharacterRepository? {
+        fun getInstance(): DataRepository? {
             if (instance == null) {
                 createInstance()
             }
@@ -32,12 +35,12 @@ class CharacterRepository private constructor() {
 
     }
 
-    suspend fun getOnceCharacter(id: Int): Character {
+    override suspend fun getOnceCharacter(id: Int): Character {
         val result = retrofit.getOnceCharacter(id)
         return Character(result.name, result.status, result.species, result.gender, result.image)
     }
 
-    suspend fun getPageWithCharacters(pageId: Int): ArrayList<Character> {
+    override suspend fun getPageWithCharacters(pageId: Int): ArrayList<Character> {
         val characters = retrofit.getPageWithCharacters(pageId).results
         characters.forEach { result ->
             val character =
@@ -47,8 +50,12 @@ class CharacterRepository private constructor() {
         return charactersCache
     }
 
-    suspend fun getFilteredCharacters(filter: Filter?): ArrayList<Character> {
-        val characters = retrofit.getFilteredCharacters(filter?.name, filter?.status, filter?.species, filter?.type, filter?.gender).results
+    override suspend fun getFilteredCharacters(filter: Filter?): ArrayList<Character> {
+        val characters = retrofit.getFilteredCharacters(filter?.name,
+            filter?.status,
+            filter?.species,
+            filter?.type,
+            filter?.gender).results
         characters.forEach { result ->
             val character =
                 Character(result.name, result.status, result.species, result.gender, result.image)
@@ -57,9 +64,17 @@ class CharacterRepository private constructor() {
         return charactersCache
     }
 
-    fun clearRepository() {
+    override fun getMeFilterIfExist(): Filter? {
+        if (filter != null) {
+            return filter
+        }
+        return null
+    }
+
+    override fun clearRepository() {
         charactersCache.clear()
     }
+
 
     init {
         val builder: OkHttpClient.Builder = OkHttpClient().newBuilder()
