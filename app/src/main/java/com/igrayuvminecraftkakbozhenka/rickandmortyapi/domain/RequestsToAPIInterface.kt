@@ -1,4 +1,4 @@
-package com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.interfaces
+package com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain
 
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.api.CharacterPage
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.api.PageWithCharacters

@@ -1,6 +1,6 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.api
 
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.interfaces.RequestsToAPIInterface
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.RequestsToAPIInterface
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

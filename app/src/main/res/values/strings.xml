@@ -19,4 +19,13 @@
     <string name="female">Женщина</string>
     <string name="genderless">Гендернонейтральный</string>
     <string name="setup_filters">Применить фильтры</string>
+    <string name="alien">Иноплонетянин</string>
+    <string name="animal">Животное</string>
+    <string name="human">Человек</string>
+    <string name="humanoid">Человекоподобный</string>
+    <string name="mythological_creature">Мифическое существо</string>
+    <string name="robot">Робот</string>
+    <string name="poopybutthole">Жопосранчик</string>
+    <string name="not_selected">Не выбрано</string>
+
 </resources>

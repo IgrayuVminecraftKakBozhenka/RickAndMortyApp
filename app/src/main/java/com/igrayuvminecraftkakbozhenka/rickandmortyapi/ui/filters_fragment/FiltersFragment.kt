@@ -11,14 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.DataRepository
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.Filter
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Filter
 
 class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private lateinit var viewModel: FilterViewModel
 
     private lateinit var nameInput: EditText
-    private lateinit var speciesInput: EditText
+    private lateinit var speciesRadioGroup: RadioGroup
     private lateinit var genderRadioGroup: RadioGroup
     private lateinit var statusRadioGroup: RadioGroup
     private lateinit var setupButton: Button
@@ -40,13 +40,15 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
         init()
     }
 
+
     private fun init() {
 
         viewModel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(FilterViewModel::class.java)
 
         nameInput = requireView().findViewById(R.id.input_name)
-        speciesInput = requireView().findViewById(R.id.input_species)
+
+        speciesRadioGroup = requireView().findViewById(R.id.species_radio_group)
 
         genderRadioGroup = requireView().findViewById(R.id.gender_radio_group)
         genderRadioGroup.setOnCheckedChangeListener(this)
@@ -62,7 +64,6 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
         when(v?.id) {
             R.id.setup_filters_button -> {
                 filter.name = nameInput.text.toString()
-                filter.species = speciesInput.text.toString()
                 repository?.filter = filter
                 viewModel.goToPerson()
             }

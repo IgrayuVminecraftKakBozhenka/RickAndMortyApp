@@ -1,17 +1,19 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.data
 
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.api.RequestsToAPI
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.filtres.Filter
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Filter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Character
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.interfaces.CharacterRepositoryInterface
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.CharacterRepositoryInterface
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class DataRepository private constructor() : CharacterRepositoryInterface {
+class DataRepository private constructor() : DataRepositoryInterface {
 
     var filter: Filter? = null
+
 
     private val retrofit: RequestsToAPI
     private val charactersCache = ArrayList<Character>()
@@ -64,6 +66,13 @@ class DataRepository private constructor() : CharacterRepositoryInterface {
         return charactersCache
     }
 
+    override fun getGenders(): List<Int> = listOf(DefaultValue.MALE.resId, DefaultValue.FEMALE.resId, DefaultValue.UNKNOWN.resId, DefaultValue.NOT_SELECTED.resId)
+
+    override fun getStatuses(): List<Int> = listOf(DefaultValue.ALIVE.resId, DefaultValue.DEAD.resId, DefaultValue.UNKNOWN.resId, DefaultValue.NOT_SELECTED.resId)
+
+    override fun getSpecies(): List<Int> = listOf(DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId)
+
+
     override fun getMeFilterIfExist(): Filter? {
         if (filter != null) {
             return filter
@@ -74,6 +83,8 @@ class DataRepository private constructor() : CharacterRepositoryInterface {
     override fun clearRepository() {
         charactersCache.clear()
     }
+
+
 
 
     init {
@@ -88,6 +99,25 @@ class DataRepository private constructor() : CharacterRepositoryInterface {
             .addConverterFactory(GsonConverterFactory.create())
             .client(builder.build())
             .build().create(RequestsToAPI::class.java)
+    }
+
+    enum class DefaultValue(val resId: Int) {
+        MALE(R.string.male),
+        FEMALE(R.string.female),
+
+        ALIVE(R.string.alive),
+        DEAD(R.string.dead),
+
+        ALIEN(R.string.alien),
+        ANIMAL(R.string.animal),
+        HUMAN(R.string.human),
+        HUMANOID(R.string.human),
+        MYTHOLOGICAL_CREATURE(R.string.mythological_creature),
+        ROBOT(R.string.robot),
+        POOPYBUTTHOLE(R.string.poopybutthole),
+
+        UNKNOWN(R.string.unknown),
+        NOT_SELECTED(R.string.not_selected)
     }
 
 }

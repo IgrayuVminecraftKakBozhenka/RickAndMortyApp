@@ -19,18 +19,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.110000014" />
 
-    <EditText
-        android:id="@+id/input_species"
+
+    <RadioGroup
+        android:id="@+id/species_radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/species_character"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19999999" />
+        app:layout_constraintVertical_bias="0.64">
+
+
+    </RadioGroup>
 
     <RadioGroup
         android:id="@+id/gender_radio_group"
@@ -38,38 +40,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/status_radio_group"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_species"
         app:layout_constraintVertical_bias="0.100000024">
 
-        <RadioButton
-            android:id="@+id/male_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/male"
-            android:textColor="@color/white" />
-
-        <RadioButton
-            android:id="@+id/female_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/female"
-            android:textColor="@color/white" />
-
-        <RadioButton
-            android:id="@+id/genderless_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/genderless"
-            android:textColor="@color/white" />
-
-        <RadioButton
-            android:id="@+id/unknown_gender_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/unknown"
-            android:textColor="@color/white" />
 
     </RadioGroup>
 
@@ -85,26 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gender_radio_group">
 
-        <RadioButton
-            android:id="@+id/alive_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/alive"
-            android:textColor="@color/white" />
 
-        <RadioButton
-            android:id="@+id/dead_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dead"
-            android:textColor="@color/white" />
-
-        <RadioButton
-            android:id="@+id/unknown_status_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/unknown"
-            android:textColor="@color/white" />
 
     </RadioGroup>
 

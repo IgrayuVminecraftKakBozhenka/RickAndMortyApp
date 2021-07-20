@@ -11,9 +11,14 @@ import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Character
 import com.squareup.picasso.Picasso
 
-class PersonAdapter(private val listener: PersonListener): RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
+class PersonAdapter(private val listener: PersonListener): RecyclerView.Adapter<PersonAdapter.BaseViewHolder>() {
 
     private val characters: ArrayList<Character> = ArrayList()
+
+    abstract class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        abstract var image: ImageView
+        abstract var description: TextView
+    }
 
     inner class PersonViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var image: ImageView = itemView.findViewById(R.id.person_image)
