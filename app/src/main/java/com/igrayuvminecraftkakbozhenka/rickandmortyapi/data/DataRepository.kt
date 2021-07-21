@@ -1,10 +1,11 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.data
 
+import android.util.Log
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.R
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.api.RequestsToAPI
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.DataRepositoryInterface
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Filter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Character
-import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.CharacterRepositoryInterface
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -53,10 +54,10 @@ class DataRepository private constructor() : DataRepositoryInterface {
     }
 
     override suspend fun getFilteredCharacters(filter: Filter?): ArrayList<Character> {
+        Log.d("filter", filter.toString())
         val characters = retrofit.getFilteredCharacters(filter?.name,
             filter?.status,
             filter?.species,
-            filter?.type,
             filter?.gender).results
         characters.forEach { result ->
             val character =
@@ -66,11 +67,12 @@ class DataRepository private constructor() : DataRepositoryInterface {
         return charactersCache
     }
 
-    override fun getGenders(): List<Int> = listOf(DefaultValue.MALE.resId, DefaultValue.FEMALE.resId, DefaultValue.UNKNOWN.resId, DefaultValue.NOT_SELECTED.resId)
+    override fun getGenders(): List<GenderValue> = listOf(GenderValue.MALE, GenderValue.FEMALE, GenderValue.UNKNOWN, GenderValue.NOT_SELECTED)
 
-    override fun getStatuses(): List<Int> = listOf(DefaultValue.ALIVE.resId, DefaultValue.DEAD.resId, DefaultValue.UNKNOWN.resId, DefaultValue.NOT_SELECTED.resId)
+    override fun getStatuses(): List<StatusValue> = listOf(StatusValue.ALIVE, StatusValue.DEAD, StatusValue.UNKNOWN, StatusValue.NOT_SELECTED)
 
-    override fun getSpecies(): List<Int> = listOf(DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId, DefaultValue.ALIEN.resId)
+    override fun getSpecies(): List<SpeciesValue> = listOf(SpeciesValue.ALIEN, SpeciesValue.ANIMAL,
+        SpeciesValue.HUMAN, SpeciesValue.HUMANOID, SpeciesValue.MYTHOLOGICAL_CREATURE, SpeciesValue.ROBOT, SpeciesValue.POOPYBUTTHOLE, SpeciesValue.UNKNOWN, SpeciesValue.NOT_SELECTED)
 
 
     override fun getMeFilterIfExist(): Filter? {
@@ -101,23 +103,33 @@ class DataRepository private constructor() : DataRepositoryInterface {
             .build().create(RequestsToAPI::class.java)
     }
 
-    enum class DefaultValue(val resId: Int) {
-        MALE(R.string.male),
-        FEMALE(R.string.female),
+    enum class GenderValue(val resId: Int, val id: Int, val value: String) {
+        MALE(R.string.male, 1, "male"),
+        FEMALE(R.string.female, 2, "female"),
 
-        ALIVE(R.string.alive),
-        DEAD(R.string.dead),
+        UNKNOWN(R.string.unknown, 3, "unknown"),
+        NOT_SELECTED(R.string.not_selected, 4, "not selected")
+    }
 
-        ALIEN(R.string.alien),
-        ANIMAL(R.string.animal),
-        HUMAN(R.string.human),
-        HUMANOID(R.string.human),
-        MYTHOLOGICAL_CREATURE(R.string.mythological_creature),
-        ROBOT(R.string.robot),
-        POOPYBUTTHOLE(R.string.poopybutthole),
+    enum class StatusValue(val resId: Int, val id: Int, val value: String) {
+        ALIVE(R.string.alive, 5, "alive"),
+        DEAD(R.string.dead, 6, "dead"),
 
-        UNKNOWN(R.string.unknown),
-        NOT_SELECTED(R.string.not_selected)
+        UNKNOWN(R.string.unknown, 7, "unknown"),
+        NOT_SELECTED(R.string.not_selected, 8, "not selected")
+    }
+
+    enum class SpeciesValue(val resId: Int, val id: Int, val value: String) {
+        ALIEN(R.string.alien, 9, "alien"),
+        ANIMAL(R.string.animal, 10, "animal"),
+        HUMAN(R.string.human, 11, "human"),
+        HUMANOID(R.string.human, 12, "humanoid"),
+        MYTHOLOGICAL_CREATURE(R.string.mythological_creature, 13, "mythological creature"),
+        ROBOT(R.string.robot, 14, "robot"),
+        POOPYBUTTHOLE(R.string.poopybutthole, 15, "poopybutthole"),
+
+        UNKNOWN(R.string.unknown, 16, "unknown"),
+        NOT_SELECTED(R.string.not_selected, 17, "not selected")
     }
 
 }

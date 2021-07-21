@@ -1,5 +1,6 @@
 package com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain
 
+import com.igrayuvminecraftkakbozhenka.rickandmortyapi.data.DataRepository
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Filter
 import com.igrayuvminecraftkakbozhenka.rickandmortyapi.domain.models.Character
 
@@ -11,11 +12,11 @@ interface DataRepositoryInterface {
 
     suspend fun getFilteredCharacters(filter: Filter?): ArrayList<Character>
 
-    fun getGenders(): List<Int>
+    fun getGenders(): List<DataRepository.GenderValue>
 
-    fun getStatuses(): List<Int>
+    fun getStatuses(): List<DataRepository.StatusValue>
 
-    fun getSpecies(): List<Int>
+    fun getSpecies(): List<DataRepository.SpeciesValue>
 
     fun getMeFilterIfExist(): Filter?
 
