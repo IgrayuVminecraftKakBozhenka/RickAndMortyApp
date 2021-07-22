@@ -21,7 +21,8 @@ class FilterViewModel(app: Application): AndroidViewModel(app) {
     val gender = MutableLiveData<DataRepository.GenderValue>()
 
     fun goToPerson() {
-        createFilter()
+        if (name.value != null || status.value != null || species.value != null || gender.value != null)
+            createFilter()
         (app as App).router.navigateTo(Screens.Person())
     }
 

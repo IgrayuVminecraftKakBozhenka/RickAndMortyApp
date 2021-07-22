@@ -2,6 +2,7 @@ package com.igrayuvminecraftkakbozhenka.rickandmortyapi.ui.filters_fragment
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -115,7 +116,7 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.setup_filters_button -> {
-                if (nameInput.text != null) {
+                if (!TextUtils.isEmpty(nameInput.text)) {
                     viewModel.setName(nameInput.text.toString())
                 }
 
