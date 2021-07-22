@@ -68,6 +68,9 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
             val radioButton = RadioButton(requireContext())
             radioButton.setText(value.resId)
             radioButton.id = value.id
+            radioButton.setTextColor(resources.getColor(R.color.white))
+            if (value.ordinal == species.size - 1)
+                radioButton.isChecked = true
             speciesRadioGroup.addView(radioButton)
         }
         speciesRadioGroup.setOnCheckedChangeListener(this)
@@ -77,6 +80,9 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
             val radioButton = RadioButton(requireContext())
             radioButton.setText(value.resId)
             radioButton.id = value.id
+            radioButton.setTextColor(resources.getColor(R.color.white))
+            if (value.ordinal == genders.size - 1)
+                radioButton.isChecked = true
             genderRadioGroup.addView(radioButton)
         }
         genderRadioGroup.setOnCheckedChangeListener(this)
@@ -86,6 +92,9 @@ class FiltersFragment: Fragment(), View.OnClickListener, RadioGroup.OnCheckedCha
             val radioButton = RadioButton(requireContext())
             radioButton.setText(value.resId)
             radioButton.id = value.id
+            radioButton.setTextColor(resources.getColor(R.color.white))
+            if (value.ordinal == status.size - 1)
+                radioButton.isChecked = true
             statusRadioGroup.addView(radioButton)
         }
         statusRadioGroup.setOnCheckedChangeListener(this)

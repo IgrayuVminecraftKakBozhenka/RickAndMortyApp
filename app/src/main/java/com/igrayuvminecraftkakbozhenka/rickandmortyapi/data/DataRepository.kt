@@ -53,17 +53,22 @@ class DataRepository private constructor() : DataRepositoryInterface {
         return charactersCache
     }
 
-    override suspend fun getFilteredCharacters(filter: Filter?): ArrayList<Character> {
+    override suspend fun getFilteredCharacters(filter: Filter?): ArrayList<Character>? {
         Log.d("filter", filter.toString())
-        val characters = retrofit.getFilteredCharacters(filter?.name,
-            filter?.status,
-            filter?.species,
-            filter?.gender).results
-        characters.forEach { result ->
-            val character =
-                Character(result.name, result.status, result.species, result.gender, result.image)
-            charactersCache.add(character)
+        try {
+            val characters = retrofit.getFilteredCharacters(filter?.name,
+                filter?.status,
+                filter?.species,
+                filter?.gender).results
+            characters.forEach { result ->
+                val character =
+                    Character(result.name, result.status, result.species, result.gender, result.image)
+                charactersCache.add(character)
+            }
+        } catch (e: Exception) {
+            return null
         }
+
         return charactersCache
     }
 

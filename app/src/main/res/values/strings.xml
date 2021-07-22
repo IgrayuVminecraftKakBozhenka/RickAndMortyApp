@@ -17,6 +17,7 @@
     <string name="unknown">Неизвестно</string>
     <string name="male">Мужчина</string>
     <string name="female">Женщина</string>
+    <string name="gender">Пол</string>
     <string name="genderless">Гендернонейтральный</string>
     <string name="setup_filters">Применить фильтры</string>
     <string name="alien">Иноплонетянин</string>

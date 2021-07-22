@@ -9,10 +9,10 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginTop="@dimen/margin"
-        android:layout_marginEnd="@dimen/margin"
-        android:layout_marginBottom="@dimen/margin"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,8 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin"
-            android:layout_marginBottom="@dimen/margin"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             app:cardBackgroundColor="@color/brown_gray_lite">
 
             <LinearLayout
@@ -35,8 +35,8 @@
 
                 <ImageView
                     android:id="@+id/person_image"
-                    android:layout_width="@dimen/width"
-                    android:layout_height="@dimen/width"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:layout_gravity="center"
                     tools:srcCompat="@drawable/rick" />
 

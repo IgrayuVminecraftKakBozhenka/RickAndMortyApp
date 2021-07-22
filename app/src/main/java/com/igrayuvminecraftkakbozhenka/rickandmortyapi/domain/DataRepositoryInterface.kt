@@ -10,7 +10,7 @@ interface DataRepositoryInterface {
 
     suspend fun getPageWithCharacters(pageId: Int): ArrayList<Character>
 
-    suspend fun getFilteredCharacters(filter: Filter?): ArrayList<Character>
+    suspend fun getFilteredCharacters(filter: Filter?): ArrayList<Character>?
 
     fun getGenders(): List<DataRepository.GenderValue>
 
